@@ -6,6 +6,7 @@ export const config = {
   mongoUri:
     process.env.MONGODB_URI || "mongodb://localhost:27017/exchange-aggregator",
   pollingInterval: Number(process.env.POLLING_INTERVAL) || 10000,
+  proxyUrl: process.env.PROXY_URL || "",
   infuraKey: process.env.INFURA_KEY || "",
   supportedCEXPairs: {
     BTC: "BTC/USDT",

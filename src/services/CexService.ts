@@ -1,6 +1,7 @@
 import { binance, kucoin, Exchange } from "ccxt";
 import { Price } from "../models/Price";
 import { config } from "../config/config";
+import { HttpsProxyAgent } from "https-proxy-agent";
 
 export class CexService {
   private binanceClient: binance;
@@ -9,6 +10,9 @@ export class CexService {
 
   constructor() {
     this.binanceClient = new binance();
+    if (config.proxyUrl) {
+      this.binanceClient.httpAgent = new HttpsProxyAgent(config.proxyUrl);
+    }
     this.kucoinClient = new kucoin();
   }
 
