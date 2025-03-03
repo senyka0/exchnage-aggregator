@@ -4,11 +4,11 @@ import { CexService } from "./services/CexService";
 import { config } from "./config/config";
 import { UniswapService } from "./services/UniswapService";
 import { RaydiumService } from "./services/RaydiumService";
-import routes from './routes';
+import routes from "./routes";
 
 const app = express();
 app.use(express.json());
-app.use('/api', routes);
+app.use("/api", routes);
 
 const cexService = new CexService();
 const uniswapService = new UniswapService();
@@ -29,13 +29,3 @@ mongoose
     console.error("MongoDB connection error:", error);
     process.exit(1);
   });
-
-app.get("/api/prices", async (req, res) => {
-  try {
-    const prices = await cexService.getPrices();
-    res.json(prices);
-  } catch (error) {
-    const message = error instanceof Error ? error.message : "Unknown error";
-    res.status(500).json({ error: message });
-  }
-});

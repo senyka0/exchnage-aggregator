@@ -58,13 +58,7 @@ export class UniswapService {
       const token0Decimals = await token0Contract.decimals();
       const token1Decimals = await token1Contract.decimals();
 
-      const decimalAdjustment = Math.abs(
-        Number(
-          isBaseToken0
-            ? token1Decimals - token0Decimals
-            : token0Decimals - token1Decimals
-        )
-      );
+      const decimalAdjustment = Math.abs(token1Decimals - token0Decimals);
 
       this.pairContracts.set(symbol, contract);
       this.listenToPriceUpdates(
